@@ -1,0 +1,109 @@
+name: Release builds
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+env:
+  GODOT_VERSION: 4.7.2
+
+jobs:
+  desktop:
+    name: Linux + Windows exports
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Godot
+        run: |
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip godot.zip
+          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 /usr/local/bin/godot
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          curl -L -o templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          unzip templates.tpz
+          mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+      - name: Import project
+        run: godot --headless --import . 2>/dev/null || godot --headless --import .
+      - name: Export Linux
+        run: godot --headless --path . --export-release "Linux" build/linux/AIPlanetRemaster.x86_64
+      - name: Export Windows
+        run: godot --headless --path . --export-release "Windows Desktop" build/windows/AIPlanetRemaster.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aip-remaster-desktop
+          path: build/
+
+  android:
+    name: Android APK + AAB
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: android-actions/setup-android@v3
+      - name: Install Godot
+        run: |
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip godot.zip
+          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 /usr/local/bin/godot
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          curl -L -o templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          unzip templates.tpz
+          mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+      - name: Restore Android build template libs
+        run: |
+          unzip -o ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/android_source.zip "libs/*" -d extracted || true
+          mkdir -p android/build/libs
+          cp -r extracted/libs/* android/build/libs/ || true
+      - name: Import project
+        run: godot --headless --import . || true
+      - name: Export APK (debug-signed)
+        run: godot --headless --path . --export-release "Android" build/android/AIPlanetRemaster.apk
+      - name: Export AAB
+        run: godot --headless --path . --export-release "Android AAB" build/android/AIPlanetRemaster.aab
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aip-remaster-android
+          path: build/android/
+
+  msix:
+    name: MSIX package (Microsoft Store)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Godot
+        shell: pwsh
+        run: |
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/${env:GODOT_VERSION}-stable/Godot_v${env:GODOT_VERSION}-stable_win64.exe.zip
+          Expand-Archive godot.zip -DestinationPath .
+          Move-Item Godot_v${env:GODOT_VERSION}-stable_win64.exe godot.exe
+          New-Item -ItemType Directory -Force "$env:APPDATA\Godot\export_templates\${env:GODOT_VERSION}.stable" | Out-Null
+          curl -L -o templates.tpz https://github.com/godotengine/godot/releases/download/${env:GODOT_VERSION}-stable/Godot_v${env:GODOT_VERSION}-stable_export_templates.tpz
+          Expand-Archive templates.tpz -DestinationPath templates
+          Move-Item templates\templates\* "$env:APPDATA\Godot\export_templates\${env:GODOT_VERSION}.stable\"
+      - name: Export Windows
+        shell: pwsh
+        run: |
+          .\godot.exe --headless --import . 2>$null; .\godot.exe --headless --path . --export-release "Windows Desktop" build\windows\AIPlanetRemaster.exe
+      - name: Package MSIX
+        shell: pwsh
+        run: |
+          $makeappx = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\makeappx.exe" | Select-Object -First 1
+          New-Item -ItemType Directory -Force build\msix | Out-Null
+          Copy-Item build\windows\AIPlanetRemaster.exe build\msix\
+          Copy-Item icon.png build\msix\
+          & $makeappx.FullName pack /d build\msix /p AIPlanetRemaster.msix
+      - name: Sign (optional, needs cert)
+        if: ${{ secrets.MSIX_CERT != '' }}
+        shell: pwsh
+        run: |
+          [IO.File]::WriteAllBytes("cert.pfx", [Convert]::FromBase64String("${{ secrets.MSIX_CERT }}"))
+          $signtool = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\signtool.exe" | Select-Object -First 1
+          & $signtool.FullName sign /fd SHA256 /f cert.pfx /p "${{ secrets.MSIX_CERT_PASSWORD }}" /tr http://timestamp.digicert.com /td SHA256 AIPlanetRemaster.msix
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aip-remaster-msix
+          path: AIPlanetRemaster.msix

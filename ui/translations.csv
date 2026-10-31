@@ -1,0 +1,110 @@
+keys,en,es
+NEW_WORLD,New World,Nuevo Mundo
+CLASSIC_WORLD,Classic World,Mundo clásico
+LOAD_GAME,Load Game,Cargar partida
+SAVE_GAME,Save Game,Guardar partida
+NEW_REALITY,New Reality,Nueva realidad
+PRESET,Preset,Preajuste
+BARREN,Barren,Yermo
+GRASS,Grass,Pradera
+WATERY,Watery,Acuático
+CONTINENTS,Continents,Continentes
+ISLANDS,Islands,Islas
+HALO,Halo,Halo
+RANDOM,Random,Aleatorio
+WORLD_SIZE,World Size,Tamaño del mundo
+WATER_LEVEL,Water Level,Nivel de agua
+HILL_HEIGHT,Hill Height,Altura del terreno
+SEED_LIFE,Seed life,Sembrar vida
+CREATE,Create,Crear
+PLAY,Play,Jugar
+PAUSE,Pause,Pausa
+STEP,Step,Paso
+SPEED,Speed,Velocidad
+POPULATIONS,Populations,Poblaciones
+DNA_EDITOR,DNA Editor,Editor de ADN
+NEURAL_VIEWER,Neural Viewer,Visor neuronal
+INSPECTOR,Inspector,Inspector
+EVENTS,Events,Eventos
+SETTINGS,Settings,Ajustes
+TUTORIAL,Tutorial,Tutorial
+TOOL_WATER,Water,Agua
+TOOL_SPONGE,Sponge,Esponja
+TOOL_HEAT,Heat,Calentar
+TOOL_COOL,Cool,Enfriar
+TOOL_HUMIDIFY,Humidify,Humedecer
+TOOL_RAISE,Raise Land,Subir tierra
+TOOL_LOWER,Lower Land,Bajar tierra
+TOOL_FLATTEN,Flatten,Allanar
+TOOL_MOUNTAIN,Mountain,Montaña
+TOOL_VALLEY,Valley,Valle
+TOOL_GRASS,Grass,Hierba
+TOOL_TREE,Tree,Árbol
+TOOL_FIRETREE,Forest Tree,Árbol de bosque
+TOOL_EVOLVING,Evolving Tree,Árbol evolutivo
+TOOL_APPLE,Apple,Manzana
+TOOL_ORANGE,Orange,Naranja
+TOOL_RABBIT,Rabbit,Conejo
+TOOL_FOX,Fox,Zorro
+TOOL_BIRD,Bird,Pájaro
+TOOL_FISH,Fish,Pez
+TOOL_DUCK,Duck,Pato
+TOOL_SHARK,Shark,Tiburón
+TOOL_TURTLE,Turtle,Tortuga
+TOOL_CRAB,Crab,Cangrejo
+TOOL_LADYBUG,Ladybug,Mariquita
+TOOL_ANT,Ant,Hormiga
+TOOL_MOUSE,Mouse,Ratón
+TOOL_GRAZER,Grazer,Pastador
+TOOL_DOLPHIN,Dolphin,Delfín
+TOOL_TREX,T-Rex,T-Rex
+TOOL_TIGER,Tiger,Tigre
+TOOL_TERRIER,Terrier,Terrier
+TOOL_HAWK,Hawk,Halcón
+TOOL_BOT,Bot,Bot
+TOOL_SUN,Sun,Sol
+TOOL_MOON,Moon,Luna
+TOOL_ASTEROID,Asteroid,Asteroide
+TOOL_MISSILE_DEFENCE,Missile Defence,Defensa de misiles
+TOOL_BALL,Ball,Balón
+TOOL_BOMB,Bomb,Bomba
+TOOL_WEAPON,Weapon,Arma
+TOOL_BEACON,Beacon,Faro
+TOOL_EARTHQUAKE,Earthquake,Terremoto
+TOOL_CLOUD,Cloud,Nube
+TOOL_ICEBERG,Iceberg,Iceberg
+CAMERA_ORBIT,Orbit,Órbita
+CAMERA_FOLLOW,Follow,Seguir
+CAMERA_FREE,Free,Libre
+TIME,Time,Tiempo
+TICKS,Ticks,Ticks
+TOTAL_THINGS,Total entities,Entidades totales
+BORN_A,A baby was born,¡Nació una cría!
+DIED,died,murió
+SAVED,Saved,Guardado
+LOADED,Loaded,Cargado
+IMPORTED,Imported,Importado
+LANG_LANGUAGE,Language,Idioma
+SHADOWS,Shadows,Sombras
+AUDIO,Sound,Sonido
+VOLUME,Volume,Volumen
+APPLY,Apply,Aplicar
+CLOSE,Cerrar,Cerrar
+KILL,Kill,Matar
+HEAL,Heal,Curar
+FOLLOW,Follow,Seguir
+DAYS_AGE,Age (ticks),Edad (ticks)
+HEALTH,Health,Salud
+GENERATION,Generation,Generación
+MUTATION,Mutation,Mutación
+SPECIES,Species,Especie
+NEURONS,Neurons,Neuronas
+REWARD,Reward,Recompensa
+NETWORK_OUTPUTS,Network outputs,Salidas de la red
+CREDITS,Credits,Créditos
+ABOUT_TEXT,"AI Planet Remaster - a Godot 4 remaster of ai.planet by Dave Kerr (2003-2005). Original code and assets are GPL-2.0. This remaster keeps the GPL-2.0 license.","AI Planet Remaster - remasterización en Godot 4 de ai.planet por Dave Kerr (2003-2005). El código y assets originales son GPL-2.0. Este remaster mantiene la licencia GPL-2.0."
+QUIT,Quit,Salir
+RESUME,Resume,Reanudar
+MAIN_MENU,Main Menu,Menú principal
+WELCOME,Welcome to AI Planet,Bienvenido a AI Planet
+TIP,Tip,Consejo

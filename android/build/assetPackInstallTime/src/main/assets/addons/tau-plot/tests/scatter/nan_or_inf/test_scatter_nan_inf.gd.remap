@@ -1,0 +1,3 @@
+[remap]
+
+path="res://addons/tau-plot/tests/scatter/nan_or_inf/test_scatter_nan_inf.gdc"

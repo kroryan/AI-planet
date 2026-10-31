@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cd8jahb1ywk25"
+
+[deps]
+
+files=["res://data/colors.0.translation", "res://data/colors.0.translation", "res://data/colors.0.translation"]
+
+source_file="res://data/colors.csv"
+dest_files=["res://data/colors.0.translation", "res://data/colors.0.translation", "res://data/colors.0.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

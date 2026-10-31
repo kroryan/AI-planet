@@ -1,0 +1,19 @@
+# Godot 4+ specific ignores
+.godot/
+/build/
+
+# Android gradle build outputs (keep the installed build template)
+android/build/.gradle/
+android/build/build/
+android/build/android/
+android/build/.cxx/
+android/build/local.properties
+
+# Save games and credentials (never commit)
+*.aipr
+*.keystore
+*.jks
+*.p12
+keystore.properties
+android/build/libs/debug/godot-lib.template_debug.aar
+android/build/libs/release/godot-lib.template_release.aar

@@ -1,0 +1,59 @@
+Please visit 
+
+http://aiplanet.sourceforge.net
+
+For latest installation information.
+
+
+Installing AIPlanet codebase:
+
+Using TortoiseCVS
+-----------------------
+
+Download and install TortoiseCVS or WinCVS:
+
+Use Windows Explorer to find a folder you want to download the code to.
+Right-click on the folder.  Then pick "CVS Checkout".
+
+For read-only access:
+Protocol: pserver
+Server: cvs.sourceforge.net
+Repository: /cvsroot/aiplanet
+User name: anonymous
+Module: aireality
+
+For read-write access:
+Protocol: ext
+Server: cvs.sourceforge.net
+Repository: /cvsroot/aiplanet
+User name: yourname
+Module: aireality
+
+
+
+Installing GLScene
+---------------
+- First download GLScene from the GLScene CVS
+- Compile and Install GLScene into Delphi
+- Compile and Install GLBASS into Delphi
+
+Compiling AIPlanet
+------------------
+You will have a directory structure as follows:
+aiplanet\Built		- contains the exe
+aiplanet\Code		- engine code
+aiplanet\Compiled	- compiled DCUs
+aiplanet\Interface	- graphics code
+aiplanet\Project	- project info
+
+You must open the aiplanet project from the project directory.
+Then go to Project->Options and set the directory structure
+accordingly.  You must have the right directories for GLScene etc.
+
+
+Contributing to AIPlanet
+--------------------------
+Create an account on Sourceforge.net
+Email aidave@telus.net and I will add your name to the developer list.
+
+If you already downloaded a read-only copy and want to contribute, you must redownload a read-write copy.
